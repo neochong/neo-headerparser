@@ -1,4 +1,5 @@
 var express = require('express')
+var ip = require('ip')
 var app = module.exports = express();
 var port = process.env.PORT || 8080;
 
@@ -10,7 +11,7 @@ app.get('/', function(req,res) {
 
 app.get('/api/whoami', function(req,res) {
   res.json({
-    ipaddress: req.ip,
+    ipaddress: ip.address(),
     language: req.acceptsLanguages()[0],
     software: req.get('User-Agent').split(')')[0].split('(')[1]
   })
